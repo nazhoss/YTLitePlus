@@ -113,14 +113,14 @@ jobs:
         env:
           THEOS: ${{ github.workspace }}/theos
           
-- name: Download libundirect Dependency
+      - name: Download libundirect Dependency
         run: |
           mkdir -p $THEOS/lib
           curl -L "https://github.com/opa334/libundirect/raw/master/libundirect.dylib" -o $THEOS/lib/libundirect.dylib
           curl -L "https://github.com/opa334/libundirect/raw/master/libundirect.tbd" -o $THEOS/lib/libundirect.tbd
         env:
           THEOS: ${{ github.workspace }}/theos
-          
+      
       - name: Fix Compiling
         run: |
           # Update GNU Make to allow for faster building

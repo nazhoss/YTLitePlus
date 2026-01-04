@@ -112,7 +112,8 @@ jobs:
           ./theos-jailed/install
         env:
           THEOS: ${{ github.workspace }}/theos
-          
+
+      # --- THIS IS THE MISSING PART YOU NEED ---
       - name: Download libundirect Dependency
         run: |
           mkdir -p $THEOS/lib
@@ -120,6 +121,7 @@ jobs:
           curl -L "https://github.com/opa334/libundirect/raw/master/libundirect.tbd" -o $THEOS/lib/libundirect.tbd
         env:
           THEOS: ${{ github.workspace }}/theos
+      # -----------------------------------------
       
       - name: Fix Compiling
         run: |

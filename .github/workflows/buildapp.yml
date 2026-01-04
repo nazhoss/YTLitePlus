@@ -113,15 +113,17 @@ jobs:
         env:
           THEOS: ${{ github.workspace }}/theos
 
-      # --- THIS IS THE MISSING PART YOU NEED ---
       - name: Download libundirect Dependency
         run: |
           mkdir -p $THEOS/lib
-          curl -L "https://github.com/opa334/libundirect/raw/master/libundirect.dylib" -o $THEOS/lib/libundirect.dylib
-          curl -L "https://github.com/opa334/libundirect/raw/master/libundirect.tbd" -o $THEOS/lib/libundirect.tbd
+          # Download both the dylib and tbd files from the official release
+          curl -L "https://github.com/opa334/libundirect/releases/download/1.0/libundirect.dylib" -o $THEOS/lib/libundirect.dylib
+          curl -L "https://github.com/opa334/libundirect/releases/download/1.0/libundirect.tbd" -o $THEOS/lib/libundirect.tbd
+          # Verify files were downloaded successfully
+          ls -la $THEOS/lib/libundirect*
+          echo "libundirect files downloaded successfully"
         env:
           THEOS: ${{ github.workspace }}/theos
-      # -----------------------------------------
       
       - name: Fix Compiling
         run: |
